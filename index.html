@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo & Cidade | Luiz Antonio</title>
+<style>        :root {
+            --primary: #4CAF50;
+            --secondary: #8BC34A;
+            --dark: #2E7D32;
+            --light: #DCEDC8;
+            --text: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            background: url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+        }
+        
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .hero-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-btn {
+            background-color: var(--white);
+            color: var(--dark);
+        }
+        
+        .footer-btn:hover {
+            background-color: var(--light);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+        }
+   </style>
+</head>
+<body>
+    <header>
+        <h1>Campo & Cidade</h1>
+        <p class="tagline">A conexão vital entre o rural e o urbano</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#alimentos">Produção de Alimentos</a></li>
+            <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <img src="img/exodo-rural.webp" alt="Campo e cidade convivendo harmoniosamente" class="hero-img">
+        
+        <section id="sobre">
+            <h2>Sobre o Projeto</h2>
+            <p>Este projeto, explora a relação vital entre o campo e a cidade, mostrando como essas duas realidades estão interligadas e como dependem uma da outra para um futuro sustentável.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Alimentação Urbana</h3>
+                    <p>Como os alimentos produzidos no campo sustentam as populações urbanas e os desafios dessa cadeia produtiva.</p>
+                    <button onclick="openModal('modalAlimentos')" class="btn">Saiba mais</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Tecnologia Integrada</h3>
+                    <p>As inovações que conectam o campo e a cidade, melhorando a produção e a distribuição de recursos.</p>
+                    <button onclick="openModal('modalTecnologia')" class="btn">Explorar</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Sustentabilidade</h3>
+                    <p>Práticas que beneficiam ambos os ambientes, preservando recursos para as futuras gerações.</p>
+                    <button onclick="openModal('modalSustentabilidade')" class="btn">Conhecer</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="alimentos">
+            <h2>A Jornada dos Alimentos</h2>
+            <p>Da produção no campo ao consumo nas cidades, os alimentos percorrem um longo caminho que envolve tecnologia, logística e muitas mãos trabalhando.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Produção Agrícola</h3>
+                    <p>Processos de cultivo, tecnologias modernas e desafios enfrentados pelos produtores rurais.</p>
+                    <button onclick="openModal('modalProducao')" class="btn">Detalhes</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Distribuição</h3>
+                    <p>Como os alimentos chegam até os centros urbanos, sistemas de transporte e armazenamento.</p>
+                    <button onclick="openModal('modalDistribuicao')" class="btn">Ver mais</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Consumo</h3>
+                    <p>O papel do consumidor urbano e como suas escolhas impactam o campo.</p>
+                    <button onclick="openModal('modalConsumo')" class="btn">Entender</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sustentabilidade">
+            <h2>Sustentabilidade: Campo e Cidade</h2>
+            <p>Desafios e soluções sustentáveis que beneficiam ambos os ambientes, promovendo um desenvolvimento equilibrado.</p>
+            
+            <div class="video-container">
+                <iframe width="560" height="315" src="video/videoplayback.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
