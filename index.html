@@ -413,3 +413,30 @@ MODAL
                 <li style="margin-bottom: 0.5rem;">Consumo consciente nas áreas urbanas</li>
             </ul>
         </div>
+         <footer>
+        <a href="#sobre" class="btn footer-btn">Voltar ao Topo</a>
+        <p style="margin-top: 1rem;">Projeto desenvolvido por Luiz Antonio © 2025</p>
+    </footer>
+    
+    <script>
+        // Funções para abrir e fechar os modais
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fechar modal ao clicar fora do conteúdo
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
